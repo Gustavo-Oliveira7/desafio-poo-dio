@@ -39,6 +39,7 @@ public class Main {
         System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
         devCamila.progredir();
         devCamila.progredir();
+        System.out.println("Nível atual: " + devCamila.calcularNivel());
         System.out.println("-");
         System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
         System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
@@ -59,5 +60,4 @@ public class Main {
         System.out.println("XP:" + devJoao.calcularTotalXp());
 
     }
-
 }

@@ -3,6 +3,7 @@ package br.com.dio.desafio.dominio;
 import java.util.*;
 
 public class Dev {
+    private Nivel nivel;
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
@@ -17,9 +18,11 @@ public class Dev {
         if(conteudo.isPresent()) {
             this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
+            atualizarNivel();
         } else {
             System.err.println("Você não está matriculado em nenhum conteúdo!");
         }
+
     }
 
     public double calcularTotalXp() {
@@ -36,6 +39,23 @@ public class Dev {
                 .mapToDouble(Conteudo::calcularXp)
                 .sum();*/
     }
+
+    public Nivel calcularNivel() {
+        double xp = calcularTotalXp();
+
+        if (xp < 100) {
+            return Nivel.INICIANTE;
+        } else if (xp < 300) {
+            return Nivel.INTERMEDIARIO;
+        } else {
+            return Nivel.AVANCADO;
+        }
+    }
+
+    public void atualizarNivel() {
+        this.nivel = calcularNivel();
+    }
+
 
 
     public String getNome() {
@@ -74,4 +94,6 @@ public class Dev {
     public int hashCode() {
         return Objects.hash(nome, conteudosInscritos, conteudosConcluidos);
     }
+
+
 }
